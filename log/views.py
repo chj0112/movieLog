@@ -34,7 +34,7 @@ class PostDetail(DetailView):
 
 class PostCreate(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'content', 'head_image']
+    fields = ['title', 'content', 'head_image', 'rating']
 
     def form_valid(self, form):
         current_user = self.request.user
@@ -47,7 +47,7 @@ class PostCreate(LoginRequiredMixin, CreateView):
 
 class PostUpdate(LoginRequiredMixin, UpdateView):
     model = Post
-    fields = ['title', 'content', 'head_image']
+    fields = ['title', 'content', 'head_image', 'rating']
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated and self.get_object().author == request.user:

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 class Post(models.Model):
@@ -7,6 +8,11 @@ class Post(models.Model):
     content = models.TextField()
 
     head_image = models.ImageField(upload_to='log/images/%Y/%m/%d/', blank=True)
+
+    rating = models.IntegerField(validators=[
+        MinValueValidator(1),
+        MaxValueValidator(5)
+    ])
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
