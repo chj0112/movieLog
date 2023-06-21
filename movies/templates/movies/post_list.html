@@ -2,10 +2,14 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>MovieLog</title>
+    <title>Movies</title>
 </head>
 <body>
-<h1>movielog</h1>
+<nav>
+    <a href="/">FrontPage</a>
+    <a href="/log/">Go to MovieLog</a>
+</nav>
+<h1>다른 분들의 평가도 보세요!</h1>
 {% for p in posts %}
     <hr/>
     <h2><a href="/movies/{{ p.pk }}">{{ p.title }} - {{ p.rating }}점</a></h2>
