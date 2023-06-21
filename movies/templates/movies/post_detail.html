@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ post.title }} - MovieLog</title>
+</head>
+<body>
+<nav>
+    <a href="/log/">MovieLog</a>
+</nav>
+<h1>{{ post.title }}</h1>
+<h4>{{ post.created_at }}</h4>
+<h4>{{ post.author }}님이 남긴 평점은요... {{ post.rating }}점</h4>
+{% if post.head_image %}
+    <img class="card-img-top" src="{{ post.head_image.url }}" alt="{{ post }} head image">
+{% else %}
+    <img class="card-img-top" src="/media/log/images/2023/06/21/00856_i1.jpg" alt="default image">
+{% endif %}
+<p>{{ post.content }}</p>
+<hr/>
+<a class="btn btn-info btn-sm float-right" href="/log/update_post/{{ post.pk }}" role="button"><i class="fas fa-pen">Edit Post</i></a>
+</body>
+</html>

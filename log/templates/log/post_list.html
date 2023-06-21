@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>MovieLog</title>
+</head>
+<body>
+<h1>movielog</h1>
+{% if user.is_authenticated %}
+    <a class="btn btn-info btn-sm float-right" href="/log/create_post/" role="button"><i class="fas fa-pen">New Post</i></a>
+{% endif %}
+{% for p in post_list %}
+    {% if user == p.author %}
+        <hr/>
+        <h2><a href="{{ p.get_absolute_url }}">{{ p.title }} - {{ p.rating }}점</a></h2>
+        <h4>{{ p.created_at }}</h4>
+        {% if p.head_image %}
+            <img class="card-img-top" src="{{ p.head_image.url }}" alt="{{ p }} head image">
+        {% else %}
+            <img class="card-img-top" src="/media/log/images/2023/06/21/00856_i1.jpg" alt="default image">
+        {% endif %}
+        <p>{{ p.content | truncatewords:30 }}</p>
+    {% endif %}
+{% endfor %}
+</body>
+</html>

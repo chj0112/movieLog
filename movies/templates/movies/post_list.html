@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>MovieLog</title>
+</head>
+<body>
+<h1>movielog</h1>
+{% for p in posts %}
+    <hr/>
+    <h2><a href="/movies/{{ p.pk }}">{{ p.title }} - {{ p.rating }}점</a></h2>
+    <h4>{{ p.created_at }} by <a href="#">{{ p.author }}</a></h4>
+    {% if p.head_image %}
+        <img class="card-img-top" src="{{ p.head_image.url }}" alt="{{ p }} head image">
+    {% else %}
+        <img class="card-img-top" src="/media/log/images/2023/06/21/00856_i1.jpg" alt="default image">
+    {% endif %}
+    <p>{{ p.content | truncatewords:30 }}</p>
+{% endfor %}
+</body>
+</html>
